@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import PomoTimer from '../assets/images/pomotimer.png';
 const PomodoroTimer: React.FC = () => {
   const [seconds, setSeconds] = useState(0);
   const [minutes, setMinutes] = useState(25);
@@ -51,10 +51,12 @@ const PomodoroTimer: React.FC = () => {
       <h1 className="text-4xl font-bold mb-4">
         {mode === "work" ? "Work" : "Break"}
       </h1>
-      <div className="text-6xl font-mono">
+      <div className="reletive flex text-center items-center justify-center ">
+      <img src={PomoTimer} alt="PomoTimer" className="w-[325px]" />
+      <div className="text-6xl font-mono absolute mt-20 text-white ">
         {minutes < 10 ? `0${minutes}` : minutes}:
         {seconds < 10 ? `0${seconds}` : seconds}
-      </div>
+      </div></div>
       <div className="mt-8">
         <button
           onClick={toggle}

@@ -14,12 +14,14 @@ const App: React.FC = () => {
     <div className="App">
       {!showTimer ? <WelcomePage /> : <PomodoroTimer />}
       {!showTimer && (
+        <div className="fixed bottom-14 flex justify-center  item-center text-center w-full">
         <button
           onClick={handleStartTimer}
-          className="fixed bottom-8 right-8 px-4 py-2 bg-blue-500 text-white rounded"
+          className=" px-4 py-2 bg-[#ffcbcb] text-[#cb5b60] rounded"
         >
           Start Timer
         </button>
+        </div>
       )}
     </div>
   );
