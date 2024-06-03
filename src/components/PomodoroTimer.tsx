@@ -1,7 +1,90 @@
 import React, { useState } from "react";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
-import PomoTimer from '../assets/images/pomotimer.png';
+import PomoTimer from "../assets/images/pomotimer.png";
+import styled, { keyframes } from "styled-components";
 
+// Define keyframes for animations
+const jittery = keyframes`
+  5%, 50% {
+    transform: scale(1);
+  }
+  10% {
+    transform: scale(0.9);
+  }
+  15% {
+    transform: scale(1.15);
+  }
+  20% {
+    transform: scale(1.15) rotate(-5deg);
+  }
+  25% {
+    transform: scale(1.15) rotate(5deg);
+  }
+  30% {
+    transform: scale(1.15) rotate(-3deg);
+  }
+  35% {
+    transform: scale(1.15) rotate(2deg);
+  }
+  40% {
+    transform: scale(1.15) rotate(0);
+  }
+`;
+
+const heartbeat = keyframes`
+  50% {
+    transform: scale(1.1);
+  }
+`;
+
+// Styled-components
+const MainContent = styled.div``;
+
+const Item = styled.div<{ bgColor: string }>`
+  background: ${({ bgColor }) => bgColor};
+`;
+
+const Button = styled.button`
+  background: #f1c40f;
+  color: #fff;
+  border: 3px solid #fff;
+  border-radius: 50px;
+  padding: 0.8rem 2rem;
+  font: 24px "Margarine", sans-serif;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  transition: 0.2s ease-in-out;
+  letter-spacing: 2px;
+`;
+const Button1 = styled.button`
+  background: #f83a00;
+  color: #fff;
+  border: 3px solid #fff;
+  border-radius: 50px;
+  padding: 0.8rem 2rem;
+  font: 24px "Margarine", sans-serif;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  transition: 0.2s ease-in-out;
+  letter-spacing: 2px;
+`;
+
+const JitteryButton = styled(Button)`
+  animation: ${jittery} 4s infinite;
+
+  &:hover {
+    animation: ${heartbeat} 0.2s infinite;
+  }
+`;
+const ResetButton = styled(Button1)`
+  animation: ${jittery} 4s infinite;
+
+  &:hover {
+    animation: ${heartbeat} 0.2s infinite;
+  }
+`;
 const PomodoroTimer: React.FC = () => {
   const [isActive, setIsActive] = useState(false);
   const [mode, setMode] = useState<"work" | "break">("work");
@@ -33,15 +116,13 @@ const PomodoroTimer: React.FC = () => {
       <div className="relative flex text-center items-center justify-center mb-10">
         <img src={PomoTimer} alt="PomoTimer" className="w-[250px]" />
         <div className="absolute flex items-center justify-center w-[250px] h-[250px]">
-          
           <CountdownCircleTimer
-       
             isPlaying={isActive}
-            duration={mode === "work" ? 25* 60 : 5 * 60}
+            duration={mode === "work" ? 25 * 60 : 5 * 60}
             colors={["#ff7c7a", "#be4e4e", "#803232", "#632525"]}
             colorsTime={[15 * 60, 10 * 60, 5 * 60, 0]}
             onComplete={handleComplete}
-            size={300}  // Set the size of the timer here
+            size={300} // Set the size of the timer here
           >
             {({ remainingTime }) => {
               const minutes = Math.floor(remainingTime / 60);
@@ -56,19 +137,17 @@ const PomodoroTimer: React.FC = () => {
           </CountdownCircleTimer>
         </div>
       </div>
-      <div className="mt-8">
-        <button
-          onClick={toggle}
-          className="px-4 py-2 bg-blue-500 text-white rounded mr-2"
-        >
-          {isActive ? "Pause" : "Start"}
-        </button>
-        <button
-          onClick={reset}
-          className="px-4 py-2 bg-red-500 text-white rounded"
-        >
-          Reset
-        </button>
+      <div className="mt-8 ">
+
+        <MainContent>
+          <div className="flex justify-between w-[300px] ">
+          <ResetButton>
+            <div  onClick={reset}> Reset</div>
+          </ResetButton>
+          <JitteryButton>
+            <div onClick={toggle}>{isActive ? "Pause" : "Start"}</div>
+          </JitteryButton></div>
+        </MainContent>
       </div>
     </div>
   );
