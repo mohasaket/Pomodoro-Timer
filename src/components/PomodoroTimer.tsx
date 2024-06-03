@@ -40,9 +40,6 @@ const heartbeat = keyframes`
 // Styled-components
 const MainContent = styled.div``;
 
-const Item = styled.div<{ bgColor: string }>`
-  background: ${({ bgColor }) => bgColor};
-`;
 
 const Button = styled.button`
   background: #f1c40f;
