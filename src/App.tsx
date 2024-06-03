@@ -11,15 +11,15 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="App">
+    <div className="App font-custom ">
       {!showTimer ? <WelcomePage /> : <PomodoroTimer />}
       {!showTimer && (
-        <div className="fixed bottom-14 flex justify-center  item-center text-center w-full">
+        <div className=" fixed  w-full h-full flex text-center items-center justify-center ">
         <button
           onClick={handleStartTimer}
-          className=" px-4 py-2 bg-[#ffcbcb] text-[#cb5b60] rounded"
+          className=" px-4 py-2 font-bold bg-[#ffcbcb] text-[#cb5b60] rounded top-20 left-20 right-20 bottom-20 fixed w-[200px] h-[48px]"
         >
-          Start Timer
+   شروع زمان
         </button>
         </div>
       )}

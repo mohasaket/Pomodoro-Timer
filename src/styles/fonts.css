@@ -1,0 +1,10 @@
+
+
+@font-face {
+    font-family: 'Lalezar-Regular';
+    src: url('/src/assets/font/OTF/Lalezar-Regular.otf') format('otf'),
+         url('/src/assets/font/TTF/Lalezar-Regular.ttf') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+  }
+  

@@ -72,17 +72,17 @@ const Button1 = styled.button`
 `;
 
 const JitteryButton = styled(Button)`
-  animation: ${jittery} 4s infinite;
+  animation: ${jittery} 10s infinite;
 
   &:hover {
-    animation: ${heartbeat} 0.2s infinite;
+    animation: ${heartbeat} 0.5s infinite;
   }
 `;
 const ResetButton = styled(Button1)`
-  animation: ${jittery} 4s infinite;
+  animation: ${jittery} 10s infinite;
 
   &:hover {
-    animation: ${heartbeat} 0.2s infinite;
+    animation: ${heartbeat} 0.5s infinite;
   }
 `;
 const PomodoroTimer: React.FC = () => {
@@ -109,8 +109,8 @@ const PomodoroTimer: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
-      <h1 className="text-4xl font-bold mb-10">
+    <div className="flex flex-col items-center justify-center h-screen bg-[#ff7c7a]">
+      <h1 className="text-4xl font-bold mb-10 text-white">
         {mode === "work" ? "انجام تسک" : "استراحت"}
       </h1>
       <div className="relative flex text-center items-center justify-center mb-10">
@@ -119,10 +119,10 @@ const PomodoroTimer: React.FC = () => {
           <CountdownCircleTimer
             isPlaying={isActive}
             duration={mode === "work" ? 25 * 60 : 5 * 60}
-            colors={["#ff7c7a", "#be4e4e", "#803232", "#632525"]}
+            colors={[ "#be4e4e", "#803232", "#632525","#ff7c7a"]}
             colorsTime={[15 * 60, 10 * 60, 5 * 60, 0]}
             onComplete={handleComplete}
-            size={300} // Set the size of the timer here
+            size={300} 
           >
             {({ remainingTime }) => {
               const minutes = Math.floor(remainingTime / 60);
@@ -142,10 +142,10 @@ const PomodoroTimer: React.FC = () => {
         <MainContent>
           <div className="flex justify-between w-[300px] ">
           <ResetButton>
-            <div  onClick={reset}> Reset</div>
+            <div  onClick={reset}> پاک کردن</div>
           </ResetButton>
           <JitteryButton>
-            <div onClick={toggle}>{isActive ? "Pause" : "Start"}</div>
+            <div onClick={toggle}>{isActive ? "توقف" : "بزن بریم"}</div>
           </JitteryButton></div>
         </MainContent>
       </div>
