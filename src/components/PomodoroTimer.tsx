@@ -1,39 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import PomoTimer from '../assets/images/pomotimer.png';
+
 const PomodoroTimer: React.FC = () => {
-  const [seconds, setSeconds] = useState(0);
-  const [minutes, setMinutes] = useState(25);
   const [isActive, setIsActive] = useState(false);
   const [mode, setMode] = useState<"work" | "break">("work");
 
-  useEffect(() => {
-    let interval: NodeJS.Timeout | undefined;
-    if (isActive) {
-      interval = setInterval(() => {
-        if (seconds === 0) {
-          if (minutes === 0) {
-            if (mode === "work") {
-              setMode("break");
-              setMinutes(5);
-              setSeconds(0);
-            } else {
-              setMode("work");
-              setMinutes(25);
-              setSeconds(0);
-            }
-          } else {
-            setMinutes(minutes - 1);
-            setSeconds(59);
-          }
-        } else {
-          setSeconds(seconds - 1);
-        }
-      }, 1000);
-    } else if (!isActive && seconds !== 0) {
-      clearInterval(interval);
+  const handleComplete = () => {
+    if (mode === "work") {
+      setMode("break");
+      return { shouldRepeat: true, delay: 1 };
+    } else {
+      setMode("work");
+      return { shouldRepeat: true, delay: 1 };
     }
-    return () => clearInterval(interval);
-  }, [isActive, seconds]);
+  };
 
   const toggle = () => {
     setIsActive(!isActive);
@@ -41,22 +22,40 @@ const PomodoroTimer: React.FC = () => {
 
   const reset = () => {
     setIsActive(false);
-    setMinutes(25);
-    setSeconds(0);
     setMode("work");
   };
 
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
-      <h1 className="text-4xl font-bold mb-4">
-        {mode === "work" ? "Work" : "Break"}
+      <h1 className="text-4xl font-bold mb-10">
+        {mode === "work" ? "انجام تسک" : "استراحت"}
       </h1>
-      <div className="reletive flex text-center items-center justify-center ">
-      <img src={PomoTimer} alt="PomoTimer" className="w-[325px]" />
-      <div className="text-6xl font-mono absolute mt-20 text-white ">
-        {minutes < 10 ? `0${minutes}` : minutes}:
-        {seconds < 10 ? `0${seconds}` : seconds}
-      </div></div>
+      <div className="relative flex text-center items-center justify-center mb-10">
+        <img src={PomoTimer} alt="PomoTimer" className="w-[250px]" />
+        <div className="absolute flex items-center justify-center w-[250px] h-[250px]">
+          
+          <CountdownCircleTimer
+       
+            isPlaying={isActive}
+            duration={mode === "work" ? 25* 60 : 5 * 60}
+            colors={["#ff7c7a", "#be4e4e", "#803232", "#632525"]}
+            colorsTime={[15 * 60, 10 * 60, 5 * 60, 0]}
+            onComplete={handleComplete}
+            size={300}  // Set the size of the timer here
+          >
+            {({ remainingTime }) => {
+              const minutes = Math.floor(remainingTime / 60);
+              const seconds = remainingTime % 60;
+              return (
+                <div className="text-6xl font-mono text-white ">
+                  {minutes < 10 ? `0${minutes}` : minutes}:
+                  {seconds < 10 ? `0${seconds}` : seconds}
+                </div>
+              );
+            }}
+          </CountdownCircleTimer>
+        </div>
+      </div>
       <div className="mt-8">
         <button
           onClick={toggle}
