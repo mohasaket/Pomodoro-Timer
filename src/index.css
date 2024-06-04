@@ -10,3 +10,11 @@ body{
     margin: auto;
     box-sizing: unset;
 }
+.app {
+    position: relative;
+  }
+  .butty {
+    position: fixed;
+    bottom: 31%;
+    transform: translate(-40%, 50px) !important;
+}
