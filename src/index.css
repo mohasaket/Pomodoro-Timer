@@ -14,7 +14,7 @@ body{
     position: relative;
   }
   .butty {
-    position: fixed;
+    position: absolute;
     bottom: 31%;
     transform: translate(-40%, 50px) !important;
 }
