@@ -17,7 +17,7 @@ const App: React.FC = () => {
         <div className=" fixed  w-full h-full flex text-center items-center justify-center ">
         <button
           onClick={handleStartTimer}
-          className=" flex items-center justify-center top-[-268px] px-4 py-2 font-bold bg-[#ffcbcb] text-[#cb5b60] rounded top-20 left-20 right-20 bottom-20 absolute  w-[200px] h-[48px]"
+          className=" flex items-center justify-center top-[-250px] px-4 py-2 font-bold bg-[#ffcbcb] text-[#cb5b60] rounded top-20 left-20 right-20 bottom-20 absolute  w-[200px] h-[48px]"
         >
    شروع زمان
         </button>
