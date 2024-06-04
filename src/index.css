@@ -3,4 +3,10 @@
 @tailwind utilities;
 *{
     font-family: 'Lalezar-Regular';
+    position: relative;
+}
+body{
+    width: 375px;
+    margin: auto;
+    box-sizing: unset;
 }
